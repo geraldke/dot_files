@@ -1,7 +1,7 @@
 """"""""""""""""""""
 " Minimal Vim Config - Gerald Ke
 "
-" Dependencies - silversearcher-ag, ctrl_p, monokai theme
+" Dependencies - silversearcher-ag, ctrl_p, monokai theme, pathogen, nerdtree
 "
 """"""""""""""""""""
 
@@ -19,8 +19,13 @@ let g:mapleader = ","
 " :W sudo saves the file
 command W w !sudo tee % > /dev/null
 
-" Show directory when started without arguments
-autocmd VimEnter * if !argc() | Explore | endif
+"""""""""
+" Plugins
+"""""""""
+
+execute pathogen#infect()
+
+map <C-n> :NERDTreeToggle<CR>
 
 """"
 " UI
@@ -91,12 +96,6 @@ if executable('ag')
   " ag is fast enough that CtrlP doesn't need to cache
   let g:ctrlp_use_caching = 0
 endif
-
-" Open items in a new tab
-let g:ctrlp_prompt_mappings = {
-    \ 'AcceptSelection("e")': ['<c-t>'],
-    \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
-    \ }
 
 " Ignore case when searching
 set ignorecase
