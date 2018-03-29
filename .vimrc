@@ -133,6 +133,9 @@ set smarttab
 set shiftwidth=2
 set tabstop=2
 
+" Delete trailing spaces
+autocmd BufWritePre * :%s/\s\+$//e
+
 " Linebreak on 500 characters
 set lbr
 set tw=500
