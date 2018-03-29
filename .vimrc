@@ -87,6 +87,7 @@ set ffs=unix,dos,mac
 
 " Add ctrlp
 set runtimepath^=~/.vim/bundle/ctrlp.vim
+let g:ctrlp_match_window = 'results:100'
 
 " Use SilverSearcher with Ctrl_p
 if executable('ag')
