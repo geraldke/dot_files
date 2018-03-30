@@ -87,6 +87,7 @@ set ffs=unix,dos,mac
 
 " Add ctrlp
 set runtimepath^=~/.vim/bundle/ctrlp.vim
+let g:ctrlp_match_window = 'results:100'
 
 " Use SilverSearcher with Ctrl_p
 if executable('ag')
@@ -131,6 +132,9 @@ set smarttab
 " 1 tab == 2 spaces
 set shiftwidth=2
 set tabstop=2
+
+" Delete trailing spaces
+autocmd BufWritePre * :%s/\s\+$//e
 
 " Linebreak on 500 characters
 set lbr
