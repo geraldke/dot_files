@@ -159,10 +159,10 @@ map <leader>pp :setlocal paste!<cr>
 """""""""""""""
 
 " Smart way to move between windows
-map <C-down> <C-W>j
-map <C-up> <C-W>k
-map <C-left> <C-W>h
-map <C-right> <C-W>l
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
 
 " Return to last edit position when opening files (You want this!)
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
