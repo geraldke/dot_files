@@ -1,7 +1,7 @@
 """"""""""""""""""""
 " Minimal Vim Config - Gerald Ke
 "
-" Dependencies - silversearcher-ag, ctrl_p, monokai theme, pathogen, nerdtree
+" Dependencies - silversearcher-ag, ctrl_p, tomorrow night theme, pathogen, nerdtree
 "
 """"""""""""""""""""
 
@@ -73,7 +73,7 @@ set number
 
 " Theme
 syntax enable
-colorscheme monokai
+colorscheme tomorrow_night
 
 " Enable 256 colors palette in Gnome Terminal
 set t_Co=256
