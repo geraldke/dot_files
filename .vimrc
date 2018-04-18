@@ -149,7 +149,7 @@ set whichwrap+=<,>,h,l
 
 set ai "Auto indent
 set si "Smart indent
-set wrap "Wrap lines
+set nowrap
 
 " Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
