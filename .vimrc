@@ -73,7 +73,7 @@ set number
 
 " Theme
 syntax enable
-colorscheme tomorrow_night
+colorscheme tomorrow-night
 
 " Enable 256 colors palette in Gnome Terminal
 set t_Co=256
