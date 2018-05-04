@@ -1,7 +1,7 @@
 """"""""""""""""""""
 " Minimal Vim Config - Gerald Ke
 "
-" Dependencies - silversearcher-ag, ctrl_p, tomorrow night theme, pathogen, nerdtree
+" Dependencies - silversearcher-ag
 "
 """"""""""""""""""""
 
@@ -17,15 +17,47 @@ let mapleader = ","
 let g:mapleader = ","
 
 " :W sudo saves the file
-command W w !sudo tee % > /dev/null
+command! W w !sudo tee % > /dev/null
 
 """""""""
 " Plugins
 """""""""
 
-execute pathogen#infect()
+" Install Vim Plug
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
+call plug#begin('~/.vim/plugged')
+
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'ctrlpvim/ctrlp.vim',  { 'on': '<Plug>CtrlP' }
+Plug 'mhinz/vim-grepper'
+
+call plug#end()
+
+" NERDTree
 map <C-n> :NERDTreeToggle<CR>
+
+" ctrlp
+set runtimepath^=~/.vim/plugged/ctrlp.vim
+let g:ctrlp_match_window = 'results:100'
+
+" Use SilverSearcher with Ctrl_p
+if executable('ag')
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
+
+let g:ctrlp_prompt_mappings = {
+      \ 'AcceptSelection("e")': ['<c-t>'],
+      \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
+      \ }
 
 """"
 " UI
@@ -72,7 +104,13 @@ set number
 """"""""""""""""""
 
 " Theme
+if empty(glob('~/.vim/colors/tomorrow-night.vim'))
+  silent !curl -fLo ~/.vim/colors/tomorrow-night.vim --create-dirs
+    \ https://raw.githubusercontent.com/chriskempson/vim-tomorrow-theme/master/colors/Tomorrow-Night.vim
+endif
+
 syntax enable
+
 colorscheme tomorrow-night
 
 " Enable 256 colors palette in Gnome Terminal
@@ -84,19 +122,6 @@ set ffs=unix,dos,mac
 """"""""
 " Search
 """"""""
-
-" Add ctrlp
-set runtimepath^=~/.vim/bundle/ctrlp.vim
-let g:ctrlp_match_window = 'results:100'
-
-" Use SilverSearcher with Ctrl_p
-if executable('ag')
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
-endif
 
 " Ignore case when searching
 set ignorecase
@@ -167,16 +192,12 @@ map <C-l> <C-W>l
 " Return to last edit position when opening files (You want this!)
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
-" Move a line of text using ALT+[jk] or Command+[jk] on mac
+" Move a line of text using ALT+[jk] or Command+[jk]
 nmap <C-j> mz:m+<cr>`z
 nmap <C-k> mz:m-2<cr>`z
 vmap <C-j> :m'>+<cr>`<my`>mzgv`yo`z
 vmap <C-k> :m'<-2<cr>`>my`<mzgv`yo`z
 
-let g:ctrlp_prompt_mappings = {
-      \ 'AcceptSelection("e")': ['<c-t>'],
-      \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
-      \ }
 """"""
 " Misc
 """"""
@@ -192,17 +213,4 @@ imap <up> <nop>
 imap <down> <nop>
 imap <left> <nop>
 imap <right> <nop>
-
-" Install Vim Plug
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
-call plug#begin()
-
-Plug 'mhinz/vim-grepper'
-
-call plug#end()
 
