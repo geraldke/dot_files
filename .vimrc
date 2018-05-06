@@ -32,6 +32,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'ctrlpvim/ctrlp.vim',  { 'on': '<Plug>CtrlP' }
 Plug 'mhinz/vim-grepper'
+Plug 'chriskempson/vim-tomorrow-theme'
 
 call plug#end()
 
@@ -95,15 +96,9 @@ set number
 " Colors and Fonts
 """"""""""""""""""
 
-" Theme
-if empty(glob('~/.vim/colors/tomorrow-night.vim'))
-  silent !curl -fLo ~/.vim/colors/tomorrow-night.vim --create-dirs
-    \ https://raw.githubusercontent.com/chriskempson/vim-tomorrow-theme/master/colors/Tomorrow-Night.vim
-endif
-
 syntax enable
 
-colorscheme tomorrow-night
+colorscheme Tomorrow-Night
 
 " Enable 256 colors palette in Gnome Terminal
 set t_Co=256
