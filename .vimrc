@@ -16,9 +16,6 @@ set history=1000
 let mapleader = ","
 let g:mapleader = ","
 
-" :W sudo saves the file
-command! W w !sudo tee % > /dev/null
-
 """""""""
 " Plugins
 """""""""
@@ -35,6 +32,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'ctrlpvim/ctrlp.vim',  { 'on': '<Plug>CtrlP' }
 Plug 'mhinz/vim-grepper'
+Plug 'chriskempson/vim-tomorrow-theme'
 
 call plug#end()
 
@@ -53,11 +51,6 @@ if executable('ag')
   " ag is fast enough that CtrlP doesn't need to cache
   let g:ctrlp_use_caching = 0
 endif
-
-let g:ctrlp_prompt_mappings = {
-      \ 'AcceptSelection("e")': ['<c-t>'],
-      \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
-      \ }
 
 """"
 " UI
@@ -103,15 +96,12 @@ set number
 " Colors and Fonts
 """"""""""""""""""
 
-" Theme
-if empty(glob('~/.vim/colors/tomorrow-night.vim'))
-  silent !curl -fLo ~/.vim/colors/tomorrow-night.vim --create-dirs
-    \ https://raw.githubusercontent.com/chriskempson/vim-tomorrow-theme/master/colors/Tomorrow-Night.vim
-endif
-
 syntax enable
-
-colorscheme tomorrow-night
+if !empty(glob('~/.vim/plugged/vim-tomorrow-theme/colors/Tomorrow-Night.vim'))
+  colorscheme Tomorrow-Night
+else
+  colorscheme peachpuff
+endif
 
 " Enable 256 colors palette in Gnome Terminal
 set t_Co=256
