@@ -97,6 +97,7 @@ set number
 """"""""""""""""""
 
 syntax enable
+
 if !empty(glob('~/.vim/plugged/vim-tomorrow-theme/colors/Tomorrow-Night.vim'))
   colorscheme Tomorrow-Night
 else
