@@ -2,6 +2,7 @@
 " Minimal Vim Config - Gerald Ke
 "
 " Dependencies - silversearcher-ag
+"              - exuberant-ctags
 "
 """"""""""""""""""""
 
@@ -32,6 +33,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'ctrlpvim/ctrlp.vim',  { 'on': '<Plug>CtrlP' }
 Plug 'mhinz/vim-grepper'
+Plug 'craigemery/vim-autotag'
 Plug 'chriskempson/vim-tomorrow-theme'
 
 call plug#end()
